@@ -22,8 +22,8 @@ class RecordViewController: UIViewController, EZMicrophoneDelegate, UIGestureRec
     override func viewDidLoad() {
         super.viewDidLoad()
         self.microphone = EZMicrophone(microphoneDelegate: self)
-
         self.glassView.backgroundColor = UIColor.clearColor()
+        self.waveformPlot.gain = 1.5
         self.waveformPlot.plotType = EZPlotType.Rolling
         self.waveformPlot.shouldFill = true
         self.waveformPlot.shouldMirror = true
@@ -62,6 +62,7 @@ class RecordViewController: UIViewController, EZMicrophoneDelegate, UIGestureRec
         
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.waveformPlot.updateBuffer(buffer[0], withBufferSize: bufferSize)
+            self.glassView.tick(self.waveformPlot.rollingHistoryLength())
         })
     }
     

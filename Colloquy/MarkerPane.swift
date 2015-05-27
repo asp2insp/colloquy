@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Colloquy. All rights reserved.
 //
 
-import Foundation
+import CoreFoundation
 import UIKit
 
 class MarkerPane : UIView {
@@ -28,5 +28,21 @@ class MarkerPane : UIView {
     
     func insertMarker(yCoord: CGFloat) {
         self.markerLines.append(yCoord)
+        self.setNeedsDisplay()
+    }
+    
+    func tick(bufferSize: Int32) {
+        self.scrollBy(CGFloat(1.0/Double(bufferSize)))
+    }
+    
+    // Scroll all lines by a proportion of total height (0.0-1.0)
+    func scrollBy(value: CGFloat) {
+        let diff = value * self.bounds.size.height
+        self.markerLines = self.markerLines.map({ (y) in
+            return y - diff
+            }).filter({ (y) in
+                return y > 0
+            })
+        self.setNeedsDisplay()
     }
 }
