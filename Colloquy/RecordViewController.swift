@@ -8,20 +8,22 @@
 
 import UIKit
 
-class RecordViewController: UIViewController, EZMicrophoneDelegate {
+class RecordViewController: UIViewController, EZMicrophoneDelegate, UIGestureRecognizerDelegate {
 
-    @IBOutlet weak var dummyPositioningView: UIView!
+    @IBOutlet weak var glassView: MarkerPane!
     @IBInspectable var backgroundColor : UIColor = UIColor.clearColor()
     @IBInspectable var waveformColor : UIColor = UIColor.redColor()
     @IBOutlet weak var waveformPlot: EZAudioPlotGL!
     @IBOutlet weak var recordButton: UIButton!
     
     var microphone : EZMicrophone!
+    var currentlyRecording = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.microphone = EZMicrophone(microphoneDelegate: self)
 
+        self.glassView.backgroundColor = UIColor.clearColor()
         self.waveformPlot.plotType = EZPlotType.Rolling
         self.waveformPlot.shouldFill = true
         self.waveformPlot.shouldMirror = true
@@ -32,11 +34,24 @@ class RecordViewController: UIViewController, EZMicrophoneDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.waveformPlot.transform = CGAffineTransformRotate(CGAffineTransformIdentity, CGFloat(M_PI/2))
-        self.waveformPlot.bounds = CGRect(x: 0, y: 0, width: dummyPositioningView.bounds.size.height, height: dummyPositioningView.bounds.size.width)
-        self.waveformPlot.center = dummyPositioningView.center
-        self.microphone.startFetchingAudio()
+        self.waveformPlot.bounds = CGRect(x: 0, y: 0, width: glassView.bounds.size.height, height: glassView.bounds.size.width)
+        self.waveformPlot.center = glassView.center
+    }
+    
+    @IBAction func handleTapOnGlassPane(sender: UITapGestureRecognizer) {
+        let touchPoint = sender.locationOfTouch(0, inView: self.glassView)
+        self.glassView.insertMarker(touchPoint.y)
     }
 
+    @IBAction func userDidTapRecordButton(sender: UIButton) {
+        if self.currentlyRecording {
+            self.microphone.stopFetchingAudio()
+        } else {
+            self.microphone.startFetchingAudio()
+        }
+        self.currentlyRecording = !self.currentlyRecording
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -49,5 +64,6 @@ class RecordViewController: UIViewController, EZMicrophoneDelegate {
             self.waveformPlot.updateBuffer(buffer[0], withBufferSize: bufferSize)
         })
     }
+    
 }
 

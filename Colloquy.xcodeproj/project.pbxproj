@@ -23,6 +23,7 @@
 		FE7781F21B143DAD006EA4D0 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7781EB1B143DAD006EA4D0 /* Store.swift */; };
 		FE7781F31B143DAD006EA4D0 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7781EC1B143DAD006EA4D0 /* Tag.swift */; };
 		FE7781F71B143FD7006EA4D0 /* LibraryItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7781F61B143FD7006EA4D0 /* LibraryItemCollectionViewCell.swift */; };
+		FE7781FD1B155808006EA4D0 /* MarkerPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7781FC1B155808006EA4D0 /* MarkerPane.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		FE7781EC1B143DAD006EA4D0 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		FE7781F61B143FD7006EA4D0 /* LibraryItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		FE7781F81B1443E7006EA4D0 /* Colloquy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Colloquy-Bridging-Header.h"; sourceTree = "<group>"; };
+		FE7781FC1B155808006EA4D0 /* MarkerPane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerPane.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 		FE7781C01B143C32006EA4D0 /* Colloquy */ = {
 			isa = PBXGroup;
 			children = (
+				FE7781FB1B1557DB006EA4D0 /* TrackMarkers */,
 				FE7781E51B143D99006EA4D0 /* Nuclear */,
 				FE7781F51B143F94006EA4D0 /* Record */,
 				FE7781F41B143F8E006EA4D0 /* Library */,
@@ -187,6 +190,14 @@
 				FE7781C51B143C32006EA4D0 /* RecordViewController.swift */,
 			);
 			name = Record;
+			sourceTree = "<group>";
+		};
+		FE7781FB1B1557DB006EA4D0 /* TrackMarkers */ = {
+			isa = PBXGroup;
+			children = (
+				FE7781FC1B155808006EA4D0 /* MarkerPane.swift */,
+			);
+			name = TrackMarkers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE7781F11B143DAD006EA4D0 /* Reactor.swift in Sources */,
+				FE7781FD1B155808006EA4D0 /* MarkerPane.swift in Sources */,
 				FE7781EE1B143DAD006EA4D0 /* Evaluator.swift in Sources */,
 				FE7781F31B143DAD006EA4D0 /* Tag.swift in Sources */,
 				FE7781F01B143DAD006EA4D0 /* Immutable.swift in Sources */,
